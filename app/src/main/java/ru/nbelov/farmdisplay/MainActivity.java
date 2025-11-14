@@ -1,5 +1,6 @@
 package ru.nbelov.farmdisplay;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Camera;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public static final SimpleDateFormat DM_HOUR_MINUTE_FORMAT_SECOND = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static int SYNC_NOTHING = 0;
     private static int SYNC_LEFT_RIGHT = 1;
+    private static int SYNC_RIGHT = 3;
+    private static int SYNC_LEFT  = 4;
     private static int SYNC_FULLSCREEN = 2;
 
     private static int START_RECORD = 1;
@@ -92,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
             mTimer = new Timer();
             mTimer.schedule(new TimerTask() {
+                @SuppressLint("DiscouragedApi")
                 @Override
                 public void run() {
                     mTimer.scheduleAtFixedRate(new TimerTask() {
@@ -113,6 +117,18 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                                    fullscreen.setVisibility(View.GONE);
                                    left.loadDataWithBaseURL(null, htmlLeft, "text/html", "utf-8", null);
                                    right.loadDataWithBaseURL(null, htmlRight, "text/html", "utf-8", null);
+                               } else if (signal == SYNC_RIGHT) {
+                                   displayLbl.setVisibility(View.GONE);
+                                   twosideslayout.setVisibility(View.VISIBLE);
+                                   right.setVisibility(View.VISIBLE);
+                                   fullscreen.setVisibility(View.GONE);
+                                   right.loadDataWithBaseURL(null, htmlRight, "text/html", "utf-8", null);
+                               } else if (signal == SYNC_LEFT ) {
+                                   displayLbl.setVisibility(View.GONE);
+                                   twosideslayout.setVisibility(View.VISIBLE);
+                                   left.setVisibility(View.VISIBLE);
+                                   fullscreen.setVisibility(View.GONE);
+                                   left.loadDataWithBaseURL(null, htmlLeft, "text/html", "utf-8", null);
                                } else if (signal == SYNC_FULLSCREEN) {
                                    displayLbl.setVisibility(View.GONE);
                                    twosideslayout.setVisibility(View.GONE);
