@@ -102,7 +102,7 @@ public class FindAPIActivity extends AppCompatActivity {
                     imageView.setVisibility(View.VISIBLE);
                     textView.setVisibility(View.VISIBLE);
                     findApiBtn.setVisibility(View.VISIBLE);
-                    dropDbCredentials();
+                    //dropDbCredentials();
                     errorMesage.setText("Ошибка подключения к базе данных, попробуйте снова");
                     Validation.Vibrate(this);
                     return;
@@ -138,7 +138,7 @@ public class FindAPIActivity extends AppCompatActivity {
                 findApiBtn.setVisibility(View.VISIBLE);
                 TextView errorMesage = findViewById(R.id.errorMesage);
                 errorMesage.setVisibility(View.VISIBLE);
-                dropDbCredentials();
+               // dropDbCredentials();
                 errorMesage.setText("Ошибка подключения к базе данных, попробуйте снова");
                 Validation.Vibrate(this);
             }
@@ -164,8 +164,9 @@ public class FindAPIActivity extends AppCompatActivity {
             imageView.setVisibility(View.VISIBLE);
             textView.setVisibility(View.VISIBLE);
             findApiBtn.setVisibility(View.VISIBLE);
-            dropDbCredentials();
-            errorMesage.setText("Ошибка подключения к базе данных, попробуйте снова");
+            // Формируем новое, более информативное сообщение об ошибке
+            // dropDbCredentials();
+            errorMesage.setText("Ошибка подключения к базе данных, попробуйте снова   информация: " + errorMessage);
             Validation.Vibrate(this);
         });
         getVersionAPI.execute();
@@ -222,7 +223,7 @@ public class FindAPIActivity extends AppCompatActivity {
             textView.setVisibility(View.VISIBLE);
             findApiBtn.setVisibility(View.VISIBLE);
             errorMesage.setVisibility(View.VISIBLE);
-            dropDbCredentials();
+           // dropDbCredentials();
             errorMesage.setText("Ошибка подключения к базе данных, попробуйте снова");
             Validation.Vibrate(this);
         }
